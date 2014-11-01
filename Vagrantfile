@@ -8,6 +8,7 @@ Vagrant.configure("2") do |config|
   doc_root = '/vagrant_data/sandbox/app/webroot'
   app_name = 'myapp' #File.basename(File.dirname(__FILE__))
   config.vm.network :forwarded_port, guest: 80, host: 8080
+  config.vm.network :private_network, ip: "192.168.33.10"
   config.vm.synced_folder src_dir, "/vagrant_data", :create => true, :owner=> 'vagrant', :group=>'www-data', :mount_options => ['dmode=775,fmode=775']
   config.berkshelf.enabled = true
   File.open('Berksfile', 'w').write <<-EOS
